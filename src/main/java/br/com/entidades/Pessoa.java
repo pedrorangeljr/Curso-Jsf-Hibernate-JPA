@@ -26,6 +26,7 @@ public class Pessoa implements Serializable {
 	private Date dataNascimento;
 	private String sexo;
 	private String[] frameworks;
+	private boolean ativo;
 	
 	public Long getId() {
 		return id;
@@ -70,6 +71,13 @@ public class Pessoa implements Serializable {
 	}
 	public void setFrameworks(String[] frameworks) {
 		this.frameworks = frameworks;
+	}
+	
+	public boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	@Override
 	public int hashCode() {
