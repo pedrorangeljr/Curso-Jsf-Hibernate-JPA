@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
- <title>Jsf</title>
+ <title>Cadastro de Usuários</title>
 </h:head>
 <h:body>
     
@@ -31,6 +31,23 @@
     
     <h:outputLabel value="Idade: "/>
     <h:inputText value="#{pessoaBean.pessoa.idade}"/>
+    
+    <h:outputLabel value="Login: "/>
+    <h:inputText value="#{pessoaBean.pessoa.login}"/>
+    
+    <h:outputLabel value="Senha: "/>
+    <h:inputSecret value="#{pessoaBean.pessoa.senha}"/>
+    
+     <h:outputLabel value="Perfil: "/>
+    
+    <h:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}">
+         
+         <f:selectItem  itemValue ="Nao" itemLabel="[--Selecione--]" noSelectionOption="true"/>
+         <f:selectItem itemValue="ADMINISTRADOR"/>
+         <f:selectItem itemValue="SECRETARIA"/>
+         <f:selectItem itemValue="RECEPCIONISTA	"/>
+         
+    </h:selectOneMenu >
     
     <h:outputLabel value="Sexo: "/>
     
@@ -65,10 +82,10 @@
     
      <h:panelGroup>
      
-        <h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
-        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
+        <h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/imagens/novo.png" title="Novo"/>
+        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/imagens/salvar.png" title="Salvar"/>
         <h:commandButton value="Remove" action="#{pessoaBean.remove}"/>
-        
+        <h:commandButton value="Limpar" type="reset"/>
      </h:panelGroup>
      
     </h:panelGrid>
@@ -103,15 +120,17 @@
 
        <h:column>
          <f:facet name="header">Editar</f:facet>
-         <h:commandLink value="Editar">
+         <h:commandLink title="Editar">
            <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           <h:graphicImage value="/resources/imagens/editar.png"/>
          </h:commandLink>
        </h:column>
        <h:outputLabel style="text-align: center;" value=" "/>
         <h:column>
          <f:facet name="header">Excluir</f:facet>
-         <h:commandLink value="Ecluir" action="#{pessoaBean.remove}">          
+         <h:commandLink title="Excluir" action="#{pessoaBean.remove}">          
            <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           <h:graphicImage value="/resources/imagens/delete.png"/>
          </h:commandLink>
        </h:column>
     </h:dataTable>
