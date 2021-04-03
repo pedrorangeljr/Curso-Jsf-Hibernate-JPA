@@ -36,10 +36,24 @@
     
     <h:selectOneMenu id="campoSexo" value="#{pessoaBean.pessoa.sexo}">
          
+         <f:selectItem  itemValue ="Nao" itemLabel="[--Selecione--]" noSelectionOption="true"/>
          <f:selectItem itemValue="MASCULINO"/>
          <f:selectItem itemValue="FEMININO"/>
          
-    </h:selectOneMenu>
+    </h:selectOneMenu >
+    
+    <h:outputLabel value="Frameworks: "/>
+    
+    <h:selectManyMenu id="campoFrameworks" style="height:150px;"
+                      value="#{pessoaBean.pessoa.frameworks}">
+    
+       <f:selectItem itemValue="Servlets"/>
+       <f:selectItem itemValue="JSP"/>
+       <f:selectItem itemValue="Hinernate"/>
+       <f:selectItem itemValue="Spring MVC"/>
+       <f:selectItem itemValue="Primefaces"/>
+    
+    </h:selectManyMenu>
     
     <h:outputLabel/>
     
@@ -50,7 +64,7 @@
         <h:commandButton value="Remove" action="#{pessoaBean.remove}"/>
         
      </h:panelGroup>
-     <br/>
+     
     </h:panelGrid>
     
     <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="3" cellpadding="6">
@@ -74,6 +88,11 @@
          <h:column>
            <f:facet name="header">Sobrenome</f:facet>
            <h:outputText value="#{pessoa.sobrenome}"/>
+       </h:column>
+       
+         <h:column>
+           <f:facet name="header">Sexo</f:facet>
+           <h:outputText value="#{pessoa.sexo}"/>
        </h:column>
 
        <h:column>

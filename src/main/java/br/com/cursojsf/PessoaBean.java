@@ -21,6 +21,7 @@ public class PessoaBean {
 	public String salvar() {
 		
 		pessoa = daoGeneric.merge(pessoa);
+		pessoa = new Pessoa();
 		carregarPessoas();
 		return "";
 	}
