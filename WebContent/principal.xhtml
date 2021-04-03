@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
  <title>Jsf</title>
@@ -10,27 +11,85 @@
     
     <h:form>
     
-    <h2>Cadastro de Usuário</h2>
+    <h:panelGrid columns="2">
+    
+    <f:facet name="header">
+      <h:outputText value="Cadastro em Jsf"/>
+    </f:facet>
     
     <h:outputLabel value="Id: "/>
     <h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
-    <br/>
+    
     
     <h:outputLabel value="Nome: "/>
     <h:inputText value="#{pessoaBean.pessoa.nome}"/>
-    <br/>
+    
     
     <h:outputLabel value="Sobrenome: "/>
     <h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
-    <br/>
+    
     
     <h:outputLabel value="Idade: "/>
     <h:inputText value="#{pessoaBean.pessoa.idade}"/>
-    <br/>
     
-    <h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
-    <h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
-    <h:commandButton value="Remove" action="#{pessoaBean.remove}"/>
+    <h:outputLabel value="Sexo: "/>
+    
+    <h:selectOneMenu id="campoSexo" value="#{pessoaBean.pessoa.sexo}">
+         
+         <f:selectItem itemValue="MASCULINO"/>
+         <f:selectItem itemValue="FEMININO"/>
+         
+    </h:selectOneMenu>
+    
+    <h:outputLabel/>
+    
+     <h:panelGroup>
+     
+        <h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
+        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
+        <h:commandButton value="Remove" action="#{pessoaBean.remove}"/>
+        
+     </h:panelGroup>
+     <br/>
+    </h:panelGrid>
+    
+    <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="3" cellpadding="6">
+    
+      <f:facet name="header">
+      
+        Lista de Pessoas Cadastradas
+      
+      </f:facet>
+      
+       <h:column>
+           <f:facet name="header">ID</f:facet>
+           <h:outputText value="#{pessoa.id}"/>
+       </h:column>
+    
+         <h:column>
+           <f:facet name="header">Nome</f:facet>
+           <h:outputText value="#{pessoa.nome}"/>
+       </h:column>
+       
+         <h:column>
+           <f:facet name="header">Sobrenome</f:facet>
+           <h:outputText value="#{pessoa.sobrenome}"/>
+       </h:column>
+
+       <h:column>
+         <f:facet name="header">Editar</f:facet>
+         <h:commandLink value="Editar">
+           <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+         </h:commandLink>
+       </h:column>
+       <h:outputLabel style="text-align: center;" value=" "/>
+        <h:column>
+         <f:facet name="header">Excluir</f:facet>
+         <h:commandLink value="Ecluir" action="#{pessoaBean.remove}">          
+           <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+         </h:commandLink>
+       </h:column>
+    </h:dataTable>
     
     </h:form>
 
