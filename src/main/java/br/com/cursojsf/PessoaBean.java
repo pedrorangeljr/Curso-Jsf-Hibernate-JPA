@@ -6,9 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
+import br.com.repository.IDaoPessoa;
+import br.com.repository.IDaoPessoaImpl;
 
 @ViewScoped
 @ManagedBean(name = "pessoaBean")
@@ -17,6 +21,7 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	private IDaoPessoa idaoPessoa = new IDaoPessoaImpl();
 	
 	public String salvar() {
 		
@@ -63,5 +68,18 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
-	
+	public String logar() {
+		
+		Pessoa pessoaUser = idaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
+		
+		if(pessoaUser != null) {
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			ExternalContext externalContext = context.getExternalContext();
+			externalContext.getSessionMap().put("usuarioLogado", pessoaUser.getLogin());
+			
+			return "principal.xhtml";
+		}
+		return "index.xhtml";
+	}
 }

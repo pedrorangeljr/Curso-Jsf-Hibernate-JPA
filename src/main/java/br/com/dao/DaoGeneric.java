@@ -5,12 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import br.com.entidades.Pessoa;
 import br.com.jsputil.JPAUtil;
 
 public class DaoGeneric<E> {
 	
 
-	public void salvar(E entidade) { // salva
+	public void salvar(E entidade) { // Metodo salva
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -22,7 +23,7 @@ public class DaoGeneric<E> {
 	    entityManager.close();
 	}
 	
-	public E merge(E entidade) {// salva e retorna a entidade
+	public E merge(E entidade) {//Metodo salva e retorna a entidade
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -37,7 +38,7 @@ public class DaoGeneric<E> {
 	}
 	
 	
-	public void deletePorId(E entidade) {
+	public void deletePorId(E entidade) { // Metodo deleta por ID
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -51,7 +52,7 @@ public class DaoGeneric<E> {
 	    entityManager.close();
 	}
 	
-	public List<E> getListEntity(Class<E> entidade) {
+	public List<E> getListEntity(Class<E> entidade) { // Metodo Listar
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -64,4 +65,5 @@ public class DaoGeneric<E> {
 	    
 	    return retorno;
 	}
+	
 }
