@@ -36,7 +36,8 @@ public class FilterAutenticacao implements Filter{
 	     
 	     String url = req.getServletPath();
 	     
-	     if(!url.equalsIgnoreCase("index.xhtml")&& usuarioLogado == null) {
+	     if(!url.equalsIgnoreCase("index.xhtml")&& usuarioLogado == null
+	    		 /*(usuarioLogado != null)*/) {
 	    	 
 	    	 RequestDispatcher dispatcher  = request.getRequestDispatcher("/index.xhtml");
 	    	 dispatcher.forward(request, response);

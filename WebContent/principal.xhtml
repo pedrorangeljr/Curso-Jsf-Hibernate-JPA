@@ -8,8 +8,15 @@
  <title>Cadastro de Usuários</title>
 </h:head>
 <h:body>
+
+   <h:form>
     
-    <h:form>
+     <h:commandLink value="Administração" action="lancamento" style="margin-left: 1cm"/>
+     <h:commandLink value="lançamentos" action="principal" style="margin-left: 1cm"/>
+     <h:commandLink value="Trocar usuário" action="index" style="margin-left: 1cm"/>
+   </h:form>
+   <br/>
+    <h:form rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
     
     <h:panelGrid columns="2">
     
@@ -83,9 +90,9 @@
      <h:panelGroup>
      
         <h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/imagens/novo.png" title="Novo"/>
-        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/imagens/salvar.png" title="Salvar"/>
-        <h:commandButton value="Remove" action="#{pessoaBean.remove}"/>
-        <h:commandButton value="Limpar" type="reset"/>
+        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/imagens/salvar.png" title="Salvar" style="margin-left: 1cm"/>
+        <h:commandButton value="Remove" action="#{pessoaBean.remove}" image="/resources/imagens/delete.png" title="deletar" style="margin-left: 1cm" />
+        <h:commandButton value="Limpar" type="reset" image="/resources/imagens/limpar.png" title="Limpar" style="margin-left: 1cm" />
      </h:panelGroup>
      
     </h:panelGrid>
@@ -128,7 +135,7 @@
        
        <h:outputLabel style="text-align: center;" value=" "/>
        
-        <h:column rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+        <h:column>
         
          <f:facet name="header">Excluir</f:facet>
          <h:commandLink title="Excluir" action="#{pessoaBean.remove}">          
