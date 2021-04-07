@@ -90,7 +90,7 @@
      
     </h:panelGrid>
     
-    <h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="3" cellpadding="6">
+    <h:dataTable value="#{pessoaBean.pessoas}" var="p" border="3" cellpadding="6">
     
       <f:facet name="header">
       
@@ -100,39 +100,42 @@
       
        <h:column>
            <f:facet name="header">ID</f:facet>
-           <h:outputText value="#{pessoa.id}"/>
+           <h:outputText value="#{p.id}"/>
        </h:column>
     
          <h:column>
            <f:facet name="header">Nome</f:facet>
-           <h:outputText value="#{pessoa.nome}"/>
+           <h:outputText value="#{p.nome}"/>
        </h:column>
        
          <h:column>
            <f:facet name="header">Sobrenome</f:facet>
-           <h:outputText value="#{pessoa.sobrenome}"/>
+           <h:outputText value="#{p.sobrenome}"/>
        </h:column>
        
          <h:column>
            <f:facet name="header">Sexo</f:facet>
-           <h:outputText value="#{pessoa.sexo}"/>
+           <h:outputText value="#{p.sexo}"/>
        </h:column>
 
        <h:column>
          <f:facet name="header">Editar</f:facet>
          <h:commandLink title="Editar">
-           <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           <f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
            <h:graphicImage value="/resources/imagens/editar.png"/>
          </h:commandLink>
        </h:column>
        
        <h:outputLabel style="text-align: center;" value=" "/>
-        <h:column>
+       
+        <h:column rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+        
          <f:facet name="header">Excluir</f:facet>
          <h:commandLink title="Excluir" action="#{pessoaBean.remove}">          
-           <f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"/>
+           <f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
            <h:graphicImage value="/resources/imagens/delete.png"/>
          </h:commandLink>
+         
        </h:column>
        
     </h:dataTable>
