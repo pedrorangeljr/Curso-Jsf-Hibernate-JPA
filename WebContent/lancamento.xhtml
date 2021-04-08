@@ -45,12 +45,42 @@
      
                <h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/imagens/novo.png" title="Novo"/>
                <h:commandButton value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/imagens/salvar.png" title="Salvar" style="margin-left: 1cm"/>
-               <h:commandButton value="Remove" action="#{lacamentoBean.remove}" image="/resources/imagens/delete.png" title="deletar" style="margin-left: 1cm" />
+               <h:commandButton value="Remove" action="#{lacamentoBean.remover}" image="/resources/imagens/delete.png" title="deletar" style="margin-left: 1cm" />
                <h:commandButton value="Limpar" type="reset" image="/resources/imagens/limpar.png" title="Limpar" style="margin-left: 1cm" />
                 
          </h:panelGroup>
         </h:panelGrid>
-      
+       
+       <h:dataTable value="#{lancamentoBean.lancamentos}" var="lanc" border="3">
+       
+               <f:facet name="header">Lista de Lançamentos</f:facet>
+               
+               <h:column>
+                   <f:facet name="header">ID </f:facet>
+                   <h:outputText value="#{lanc.id}"/>
+               </h:column>
+               
+               <h:column>
+                   <f:facet name="header">Nota </f:facet>
+                   <h:outputText value="#{lanc.numeroNotaFiscal}"/>
+               </h:column>
+               
+               <h:column>
+                   <f:facet name="header">Origem </f:facet>
+                   <h:outputText value="#{lanc.empresaOrigem}"/>
+               </h:column>
+               
+               <h:column>
+                   <f:facet name="header">Destino </f:facet>
+                   <h:outputText value="#{lanc.empresaDestino}"/>
+               </h:column>
+               
+               <h:column>
+                   <f:facet name="header">Usuário </f:facet>
+                   <h:outputText value="#{lanc.usuario.nome}"/>
+               </h:column>
+               
+       </h:dataTable>
       </h:form>
         
     </h:form>
