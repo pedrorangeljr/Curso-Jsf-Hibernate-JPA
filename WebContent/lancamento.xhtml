@@ -2,24 +2,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
 <h:head>
  <title>Lançamento</title>
 </h:head>
 
 <h:body>
-
-   <h:form>
-     <h:commandLink value="Administração" action="principal" style="margin-left: 1cm"/>
-     <h:commandLink value="lançamentos" action="lancamento" style="margin-left: 1cm"/>
-     <h:commandLink value="Trocar usuário" action="index" style="margin-left: 1cm"/>
-   </h:form>
+    
+    <ui:include src="/menu.xhtml"/>
+   
     <br/>
     <br/>
     
     <h:form id="formLancamento">
       
-      <h:form>
         
         <h:panelGrid columns="2">
         
@@ -45,7 +42,8 @@
      
                <h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/imagens/novo.png" title="Novo"/>
                <h:commandButton value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/imagens/salvar.png" title="Salvar" style="margin-left: 1cm"/>
-               <h:commandButton value="Remove" action="#{lacamentoBean.remover}" image="/resources/imagens/delete.png" title="deletar" style="margin-left: 1cm" />
+               <h:commandButton value="Remove" action="#{lacamentoBean.remover}" image="/resources/imagens/delete.png" title="deletar" style="margin-left: 1cm"
+               rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" />
                <h:commandButton value="Limpar" type="reset" image="/resources/imagens/limpar.png" title="Limpar" style="margin-left: 1cm" />
                 
          </h:panelGroup>
@@ -80,8 +78,22 @@
                    <h:outputText value="#{lanc.usuario.nome}"/>
                </h:column>
                
+               <h:column>
+                  <f:facet name="header">Editar</f:facet>
+                  <h:commandLink type="Editar">
+                      <h:graphicImage value="/resources/imagens/editar.png"/>
+                      <f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBean.lancamento}"/>
+                  </h:commandLink>
+               </h:column>
+               
+               <h:column rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" >
+                  <f:facet name="header">Excluir</f:facet>
+                  <h:commandLink action="#{lancamentoBean.remover}" type="Editar">
+                      <h:graphicImage value="/resources/imagens/delete.png"/>
+                      <f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBean.lancamento}"/>
+                  </h:commandLink>
+               </h:column>
        </h:dataTable>
-      </h:form>
         
     </h:form>
     

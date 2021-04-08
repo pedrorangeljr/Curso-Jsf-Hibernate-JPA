@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.FacesComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -28,9 +30,18 @@ public class PessoaBean {
 		pessoa = daoGeneric.merge(pessoa);
 		pessoa = new Pessoa();
 		carregarPessoas();
+		mostrarMsg("Cadastrado com Sucesso");
 		return "";
 	}
 	
+	private void mostrarMsg(String msg) {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		FacesMessage message = new FacesMessage(msg);
+		context.addMessage(null, message);
+		
+	}
+
 	public String novo() {
 		
 		pessoa = new Pessoa();
@@ -44,6 +55,7 @@ public class PessoaBean {
 		daoGeneric.deletePorId(pessoa);
 		pessoa = new Pessoa();
 		carregarPessoas();
+		mostrarMsg("Removido com sucesso!");
 		
 		return "";
 	}

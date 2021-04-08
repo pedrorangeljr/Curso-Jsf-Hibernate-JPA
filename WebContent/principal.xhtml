@@ -2,21 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
 
 <h:head>
  <title>Cadastro de Usuários</title>
 </h:head>
 <h:body>
-
-   <h:form>
     
-     <h:commandLink value="Administração" action="principal" style="margin-left: 1cm"/>
-     <h:commandLink value="lançamentos" action="lancamento" style="margin-left: 1cm"/>
-     <h:commandLink value="Trocar usuário" action="index" style="margin-left: 1cm"/>
-   </h:form>
+    <ui:include src="/menu.xhtml"/>
+    
    <br/>
     <h:form rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+    
+    <h:messages infoStyle="color:green;"/>
     
     <h:panelGrid columns="2">
     
@@ -65,6 +64,11 @@
          <f:selectItem itemValue="FEMININO"/>
          
     </h:selectOneMenu >
+    
+    <h:outputLabel value="Nascimento: "/>
+    <h:inputText value="#{pessoaBean.pessoa.dataNascimento}">
+      <f:convertDateTime pattern="dd/MM/yyyy"/>
+    </h:inputText>
     
     <h:outputLabel value="Frameworks: "/>
     
