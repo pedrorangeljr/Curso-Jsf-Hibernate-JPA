@@ -1,5 +1,10 @@
 package br.com.cursojsf;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +74,30 @@ public class PessoaBean {
 	
 	public void pesquisarCep(AjaxBehaviorEvent event) {
 		
-		System.out.println("Metodo pesquisa Cep chamado CEP: " + pessoa.getCep());
+	    try {
+	    	/*Monta a URL*/
+	    	URL url = new URL("https://viacep.com.br/ws/"+pessoa.getCep()+"/json/");
+	    	/*Abre a conexão com o servidor*/
+	    	URLConnection connection = url.openConnection();
+	    	/*Retorna os dados*/
+	    	InputStream is = connection.getInputStream();
+	    	BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+	    	
+	    	String cep =  "";
+	    	StringBuilder jCep = new StringBuilder();
+	    	
+	    	while((cep = br.readLine()) != null) {
+	    		
+	    		jCep.append(cep);
+	    	}
+			
+	    	System.out.println(jCep);
+	    	
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			mostrarMsg("Erro ao digitar o CEP");
+		}
 	}
 	
 	public void setPessoa(Pessoa pessoa) {
