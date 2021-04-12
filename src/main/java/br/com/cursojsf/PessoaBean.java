@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.FacesComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
@@ -64,6 +65,11 @@ public class PessoaBean {
 	public void carregarPessoas() {
 		
 		pessoas = daoGeneric.getListEntity(Pessoa.class);
+	}
+	
+	public void pesquisarCep(AjaxBehaviorEvent event) {
+		
+		System.out.println("Metodo pesquisa Cep chamado CEP: " + pessoa.getCep());
 	}
 	
 	public void setPessoa(Pessoa pessoa) {

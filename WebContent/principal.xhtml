@@ -38,6 +38,12 @@
     <h:outputLabel value="Idade: "/>
     <h:inputText value="#{pessoaBean.pessoa.idade}"/>
     
+    <h:outputLabel value="CPF: "/>
+    <h:inputText value="#{pessoaBean.pessoa.cpf}"/>
+    
+    <h:outputLabel value="Titulo de Eleitor: "/>
+    <h:inputText value="#{pessoaBean.pessoa.tituloEleitor}"/>
+    
     <h:outputLabel value="Login: "/>
     <h:inputText value="#{pessoaBean.pessoa.login}"/>
     
@@ -67,7 +73,7 @@
     
     <h:outputLabel value="Nascimento: "/>
     <h:inputText value="#{pessoaBean.pessoa.dataNascimento}">
-      <f:convertDateTime pattern="dd/MM/yyyy"/>
+      <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
     </h:inputText>
     
     <h:outputLabel value="Frameworks: "/>
@@ -83,6 +89,11 @@
     
     </h:selectManyMenu>
     
+     <h:outputLabel value="CEP: "/>
+     <h:inputText value="#{pessoaBean.pessoa.cep}">
+          <f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisarCep}"/> 
+     </h:inputText>
+     
      <h:outputLabel value="Ativo: "/>
      
      <h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}">

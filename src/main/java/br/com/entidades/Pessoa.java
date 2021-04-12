@@ -31,6 +31,9 @@ public class Pessoa implements Serializable {
 	private String login;
 	private String senha;
 	private String perfilUser;
+	private Integer cpf;
+	private Integer tituloEleitor;
+	private String cep;
 	
 	public Long getId() {
 		return id;
@@ -102,6 +105,26 @@ public class Pessoa implements Serializable {
 	}
 	public void setPerfilUser(String perfilUser) {
 		this.perfilUser = perfilUser;
+	}	
+	
+	public Integer getCpf() {
+		return cpf;
+	}
+	public void setCpf(Integer cpf) {
+		this.cpf = cpf;
+	}
+	public Integer getTituloEleitor() {
+		return tituloEleitor;
+	}
+	public void setTituloEleitor(Integer tituloEleitor) {
+		this.tituloEleitor = tituloEleitor;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 	@Override
 	public int hashCode() {
