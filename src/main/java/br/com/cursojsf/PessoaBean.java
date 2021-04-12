@@ -16,6 +16,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 
@@ -138,6 +139,7 @@ public class PessoaBean {
 		}
 		return "index.xhtml";
 	}
+	
 	
 	public boolean permiteAcesso(String acesso) {
 		
