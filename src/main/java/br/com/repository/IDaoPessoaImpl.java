@@ -2,6 +2,7 @@ package br.com.repository;
 
 
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 

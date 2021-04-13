@@ -12,11 +12,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.FacesComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.servlet.http.HttpServletRequest;
+import javax.faces.model.SelectItem;
 
 import com.google.gson.Gson;
 
@@ -32,7 +31,7 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	private IDaoPessoa idaoPessoa = new IDaoPessoaImpl();
+	private IDaoPessoa idaoPessoa = new IDaoPessoaImpl();	
 	
 	public String salvar() {
 		
@@ -149,4 +148,5 @@ public class PessoaBean {
 		
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}
+	
 }
