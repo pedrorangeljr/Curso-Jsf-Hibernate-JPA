@@ -15,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 
@@ -31,9 +31,13 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	private IDaoPessoa idaoPessoa = new IDaoPessoaImpl();	
+	private IDaoPessoa idaoPessoa = new IDaoPessoaImpl();
+	
+	private Part arquivoFoto;
 	
 	public String salvar() {
+		
+		System.out.println(arquivoFoto);
 		
 		pessoa = daoGeneric.merge(pessoa);
 		pessoa = new Pessoa();
@@ -124,6 +128,15 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
+	
+	public Part getArquivoFoto() {
+		return arquivoFoto;
+	}
+
+	public void setArquivoFoto(Part aquivoFoto) {
+		this.arquivoFoto = aquivoFoto;
+	}
+
 	public String logar() {
 		
 		Pessoa pessoaUser = idaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());

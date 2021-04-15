@@ -14,7 +14,7 @@
     <ui:include src="/menu.xhtml"/>
     
    <br/>
-    <h:form rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+    <h:form enctype="multipart/form-data" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
     
     <h:messages infoStyle="color:green;"/>
     
@@ -27,6 +27,8 @@
     <h:outputLabel value="Id: "/>
     <h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
     
+    <h:outputLabel value="Foto: "/>
+    <h:inputFile id="foto" value="#{pessoaBean.arquivoFoto}"></h:inputFile>
     
     <h:outputLabel value="Nome: "/>
     <h:inputText value="#{pessoaBean.pessoa.nome}" pt:placeholder="Digite seu Nome"/>
